@@ -8,6 +8,8 @@
 #ifndef GENERICPRO_H_
 #define GENERICPRO_H_
 
+#include "CommonType.h"
+
 #define CATCHER_MAX 10
 #define CATCHER_ERROR CATCHER_MAX+1
 
@@ -27,7 +29,7 @@ typedef struct {
 	PROCAT state[CATCHER_MAX];		//捕捉器状态
 }GENPRO;
 
-extern void Protocol_Init(GENPRO *);
+extern BOOL Protocol_Init(GENPRO *);
 extern void Protocol_AddBytes(GENPRO *,char *,int); //字节接收
 
 #endif /* GENERICPRO_H_ */

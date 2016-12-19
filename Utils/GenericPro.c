@@ -9,6 +9,10 @@
 #include "GenericPro.h"
 #include <memory.h>
 
+static BOOL mock_check(char *buf,int size){
+	return 1;
+}
+
 static int getFreeSlot(GENPRO *pro){
 	int i=0;
 	for(;i<pro->cath_max;i++){
@@ -83,7 +87,11 @@ static void complete(GENPRO *pro){
 	}
 }
 
-void Protocol_Init(GENPRO *pro){
+BOOL Protocol_Init(GENPRO *pro){
+	if(pro->getLength==NULL||pro->callBack==NULL)
+		return FALSE;
+	if(pro->check==NULL)
+		pro->check=mock_check;
 	memset(&pro->state,0,sizeof(pro->state));
 }
 
