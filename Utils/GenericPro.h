@@ -19,11 +19,11 @@ typedef struct {
 }PROCAT;		//捕捉器,状态,初始化为0
 
 typedef struct {
-	const char *header;				//包头
-	const char headerSize,cath_max;	//包头大小,捕捉器非零缓存区个数
-	const int minSize,maxSize;		//信息最小长度,完整包最大长度
-	int (*getLength)(char *,int);	//获取长度信息
-	void (*callBack)(char *,int);	//回调函数
+	const char *header;			//包头
+	const char headerSize,cath_max;		//包头大小,捕捉器非零缓存区个数
+	const int minSize,maxSize;		//信息最小长度(包头+长度信息的长度),完整包最大长度
+	int (*getLength)(char *,int);		//获取长度信息,完整长度
+	void (*callBack)(char *,int);		//回调函数
 	char (*check)(char *,int);		//校验
 	char *buf[CATCHER_MAX];			//捕捉器个数,减少丢包
 	PROCAT state[CATCHER_MAX];		//捕捉器状态
